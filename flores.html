@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Flores Amarillas 💛</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff4da6, #ff80bf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Tarjeta */
+.carta {
+    background: #f3e5d8;
+    width: 650px;
+    padding: 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+/* Texto */
+.texto {
+    width: 50%;
+}
+
+.contador {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Árbol */
+.arbol {
+    position: relative;
+    width: 180px;
+    height: 220px;
+    animation: latido 2s infinite;
+}
+
+/* Tronco */
+.tronco {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 18px;
+    height: 90px;
+    background: linear-gradient(#8b5a2b, #5a381a);
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+/* Flores */
+.flor {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #fff700, #ffcc00);
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+/* Corazón */
+.flor:nth-child(1) { top: 10px; left: 65px; }
+.flor:nth-child(2) { top: 10px; left: 105px; }
+
+.flor:nth-child(3) { top: 30px; left: 50px; }
+.flor:nth-child(4) { top: 30px; left: 85px; }
+.flor:nth-child(5) { top: 30px; left: 120px; }
+
+.flor:nth-child(6) { top: 50px; left: 60px; }
+.flor:nth-child(7) { top: 50px; left: 110px; }
+
+.flor:nth-child(8) { top: 70px; left: 75px; }
+.flor:nth-child(9) { top: 90px; left: 90px; }
+
+/* Latido */
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Pétalos cayendo */
+.petalo {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: caer linear infinite;
+}
+
+@keyframes caer {
+    from {
+        transform: translateY(-100vh);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="carta">
+    
+    <div class="texto">
+        <h2>Flores Amarillas para el amor de mi vida 💛</h2>
+        <p>Si pudiera elegir un lugar seguro, sería a tu lado.</p>
+        <p>Cuanto te amo no cabe en palabras…</p>
+
+        <div class="contador">
+            Mi amor por ti comenzó hace...<br>
+            <span id="tiempo"></span>
+        </div>
+    </div>
+
+    <div class="arbol">
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+        <div class="flor"></div>
+
+        <div class="tronco"></div>
+    </div>
+
+</div>
+
+<script>
+// CONTADOR
+const inicio = new Date("2023-06-21T10:16:00");
+
+function actualizarTiempo() {
+    const ahora = new Date();
+    const diferencia = ahora - inicio;
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+    const segundos = Math.floor((diferencia / 1000) % 60);
+
+    document.getElementById("tiempo").innerHTML =
+        dias + " días " + horas + " horas " + minutos + " minutos " + segundos + " segundos";
+}
+
+setInterval(actualizarTiempo, 1000);
+
+// PETALOS
+for (let i = 0; i < 25; i++) {
+    let petalo = document.createElement("div");
+    petalo.classList.add("petalo");
+    petalo.style.left = Math.random() * 100 + "vw";
+    petalo.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(petalo);
+}
+</script>
+
+</body>
+</html>
